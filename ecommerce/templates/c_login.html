@@ -1,0 +1,28 @@
+{%extends "layout.html" %}
+{% block title %}
+Login
+{% endblock %}
+
+{% block main%}
+{% from "formHelper.html" import render_field %}
+<div class="form">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+        <div class="col-md-8"><h1 class="bg-info text-center">Login</h1></div>
+        <div class="col-md-2"></div>
+        </div>
+        <form action="/c_login" method="POST">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
+                    {{render_field(form.email, class="form-control")}}
+                    {{render_field(form.password, class="form-control")}}
+                    {{render_field(form.submit, class="form-control")}}
+                    <a href="{{url_for('c_register')}}"><button class="btn btn-sm form-control">Register</button></a>
+                </div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

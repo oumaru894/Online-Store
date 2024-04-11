@@ -1,0 +1,52 @@
+{% extends "layout.html"%}
+
+{% block title%}
+    Store
+{% endblock %}
+
+{%block main%}
+<section id="store_banner1" class="sect">
+    <div>
+    <h2>#stayhome</h2>
+    <p>save more with coupons & up to 70% all</p>
+    </div>
+</section>
+<section id="product1" class="sect">
+    <div class="prod_contain">
+        {% for i in data%}
+        <div class="prod">
+            <a href="{{url_for('single_item', id=i.id)}}">
+            <img src="{{url_for('static', filename='/products/'+i.path)}}">
+            <div class="info">
+                <span>
+                    {{i.name}}
+                </span>
+                <h5>
+                    Multifunctional Day-Date-Just 
+                </h5>
+                <div class="rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                </div>
+                <h4>{{i.price}}</h4>
+                
+            </div>
+            </a>
+            <form action="/carts", method="POST">
+                <input type="hidden" name="main_id" value="{{i.id}}">
+                <input type="hidden" name="quantity" value="1"> 
+                <button type="submit"><i class="bi bi-cart cart"></i></button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    
+</section>
+<section id="pagenation">
+    <a href="{{url_for('store', page=1|int)}}">1</a>
+    <a href="{{url_for('store', page=-1|int)}}">2</a>
+</section>
+{% endblock %}

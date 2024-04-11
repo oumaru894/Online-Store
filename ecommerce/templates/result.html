@@ -1,0 +1,42 @@
+{%extends "layout.html"%}
+{% block title %}
+Search
+{%endblock%}
+
+{% block main %}
+
+<section id="product1" class="sect">
+    <div class="prod_contain">
+        {% for i in product%}
+        <div class="prod">
+            <a href="{{url_for('single_item', id=i.id)}}">
+            <img src="{{url_for('static', filename='/products/'+i.path)}}">
+            <div class="info">
+                <span>
+                    {{i.name}}
+                </span>
+                <h5>
+                    Multifunctional Day-Date-Just 
+                </h5>
+                <div class="rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                </div>
+                <h4>{{i.price}}</h4>
+                
+            </div>
+            </a>
+            <form action="/carts", method="POST">
+                <input type="hidden" name="main_id" value="{{i.id}}">
+                <input type="hidden" name="quantity" value="1"> 
+                <button type="submit"><i class="bi bi-cart cart"></i></button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    
+</section>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+    {% block title %}
+    Register
+    {% endblock %}
+
+    {% block main %}
+    <h3>Registration</h3>
+    <br>
+    <div class="mb-3">
+        <form action="/register", method="POST">
+            <div class="mb-3">
+                <input name="username" placeholder="Username" type="text">
+            </div>
+            <div class="mb-3">
+                <input name="password" placeholder="Password" type="text">
+            </div>
+            <div class="mb-3">
+                <input name="confirmation" placeholder="Confirmation" type="text">
+            </div>
+
+            <div class="mb-3">
+                <hr>
+                <h6>Who is your favorite person</h6>
+                <input name="person" placeholder="Favorite person" type="text">
+                <h6>What is your phone_number</h6>
+                <input name="number" placeholder="Phone Number" type="number">
+
+            </div>
+
+            <button class="btn btn-primary" type="submit">Register</button>
+        </form>
+    </div>
+    {% endblock %}
+

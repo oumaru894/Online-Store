@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title%}
+Login
+{% endblock %}
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="text-center bg-info p-2 h4">Login</div>
+                {% from "formHelper.html" import render_field %}
+                <form method=post>
+                    {{form.csrf_token}}
+                <div>
+                    {{ render_field(form.email, class="form-control") }}
+                    {{ render_field(form.password, class="form-control") }}
+                    {{form.submit}}
+                </div>
+                <div class="col">
+                <input type="submit" value="Login" class="btn-info">
+                <a href="{{url_for('customer_register')}}"><input type="button" value="Register" class="btn-info"></a>
+                </div>
+                </form>
+            </div>
+      <div class="col-md-3"></div>
+    </div>
+</div>
+{% endblock %}

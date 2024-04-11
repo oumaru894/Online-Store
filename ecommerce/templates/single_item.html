@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+{% block title %}
+{{main[0].name}}
+{% endblock %}
+
+{% block main %}
+<section id="single_product" class="sect">
+    <div class="div_img">
+        <a class="main_img"><img src="{{url_for('static', filename='/products/'+main[0].path)}}"></a>
+        <div class="sub_img">
+            {% for i in sub %}
+            <a><img src="{{url_for('static', filename='/products/'+i.path)}}"></a>
+            <!--<p>{{i.name}}</p>-->
+            {% endfor %}
+        </div>
+    </div>
+    <div class="div_about">             
+        <h3 class="name"><strong>Multifunctional Day-Date just Watch</strong></h3>
+        <h2>$50.00</h2>
+        <div class="cartb">
+            <form action="/carts", method="POST">
+                <input type="hidden" name="main_id" value="{{main[0].id}}">
+                <input type="number" name="quantity" value="1" min="1" max="{{main[0].quantity + 1}}" style="width:50px;text-align:center">
+                <button type="submit">Add to Chart</button>
+            </form>
+        </div>
+        <div class="details">
+            <h3>Product Details</h3>
+            <p>
+                thehhsdiuhbkbasdfhgvbseijdghvushbghvsdihvshngvsbiugjnsvoumasr the qicl fhbbfebekohkfbrown x junmops over the laczy dogh the auivc jjkbixv;pdasf j4djfdiyann 
+            </p>
+        </div>
+    </div>
+
+</section>
+
+<hr>
+
+<section id="product1" class="sect">
+    <h2>
+        Products
+    </h2>
+    <p>
+        Seasion Collections New Design
+    </p>
+    <div class="prod_contain">
+        {%for i in data2 %}
+        <div class="prod">
+            <a href="{{url_for('single_item', id=i.id)}}">
+            <img src="{{url_for('static', filename='/products/'+i.path)}}">
+            <div class="info">
+                <span>
+                    {{i.name}}
+                </span>
+                <h5>
+                    Multifunctional Day-Date-Just 
+                </h5>
+                <div class="rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                </div>
+                <h4>${{i.price}}</h4>
+                
+            </div>
+            </a>
+
+            <form action="/carts", method="POST">
+                <input type="hidden" name="main_id" value="{{i.id}}">
+                <input type="hidden" name="quantity" value="1"> 
+                <button type="submit"><i class="bi bi-cart cart"></i></button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+        
+</section>
+{% endblock %}

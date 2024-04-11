@@ -1,0 +1,97 @@
+{%extends "layout.html"%}
+
+{% block title %}
+    Order
+{% endblock %}
+
+{% block main %}
+<body>
+<div class="row">
+    <div class="col-md-4 " style="padding-left:30px">
+        Invoice: {{order.invoice}}
+        <br>
+        Status: {{order.status}}
+        <br>
+        Customer name: {{customer.name}}
+        <br>
+        Customer email: {{customer.email}}
+        <br>
+        Customer contact: {{customer.contact}}
+        <br>
+        Customer address: {{customer.address}}
+        <br>
+        <br> 
+    </div>
+</div>
+<!--<div class="container" id="close">
+    <div class="row">
+        <div class="md-5" style="display:flex;justify-content:center;position:relative">
+                    <div style="width:50vw;height:50vh;background-color:rgb(215, 224, 250);text-align:center;font-family:'Times New Roman', Times, serif;">
+                        <div style="position:absolute;left:67vw"><i  id="pop-div"  class="bi bi-x-circle" ></i></div>
+                        <p><strong> Only accept transaction through orange money</strong></p>
+                        <p><b>Below is our Orange Money infomation for transaction</b></p>
+                    <h4 class="center" style="background-color:orange;position:absolute;width:fit-content;left:550px">Accout Name: Isshaaq Bah,<br><br>Account Number: 0770071894</h4>
+        </div>
+</div>
+    </div>
+</div>-->
+
+<table class="table">
+    <h1>CARTS</h1>
+    <hr>
+    <thead>
+        <tr>
+            <th scope="col">Sr</th>
+            
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            
+            
+        <tr>
+    </thead>
+
+    <tbody>
+
+        {% for key,i in order.orders.items() %}
+        
+            <tr>
+                <form action="/update_cart", method="POST">
+                    
+                    <input type="hidden" name="id" value="{{key|int}}">
+                    <td>{{loop.index}}</td>
+                    <!--<td><img src="{{url_for('static', filename='/products/'+i.path)}}" width="60px"></td>-->
+                    <td>{{i.name}}</td>
+                    {% set price = i.quantity|int * i.price|float %}
+                    <td><b>{{price}}</b></td>
+                    <td><b><input type="number" name="quantity" value="{{i.quantity}}" style="width:50px;text-align:center"></td>
+                    
+                </form>
+            </tr>
+            
+            
+            
+        {% endfor %}
+    </tbody>
+
+</table>
+<table class="table table-sm">
+    <tr>
+        <hr>
+            <td width="20%"></td>
+            <td width="40%"><a id="alert" class=" pop btn btn-success btn-sm" style="background-color:orangered">Orange Money</a></td>
+            <td colspan="3"><h4>Total: ${{subtotal}}</h4></td>
+            <td></td>
+            <td width="20%"></td>
+            <td><a href="{{url_for('clearcart')}}" class="btn btn-danger btn-sm float-right mr-4"> Get PDF</a></td>
+            
+            
+    </tr>
+</table>
+
+
+
+</body>
+
+
+{% endblock %}

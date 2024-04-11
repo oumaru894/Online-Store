@@ -1,0 +1,145 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+<section id="home">
+    <h4>Trade-easy</h4>
+    <h2>You Are</h2>
+    <h1>What Matters</h1>
+    <p>Make Your Deal Today</p>
+    <button>Shop Now</button>
+</section>
+
+<section id="feature" class="sect con">
+    <div class="f-box">
+       <img src="static/delivery.png" alt="delivery picture">
+       <h6>Free Shipping</h6>
+    </div>
+    <div class="f-box">
+        <img src="static/oline_order.png" alt="oline_order">
+        <h6>Oline Order</h6>
+    </div>
+    <div class="f-box">
+        <img src="static/save_money.png" alt="save_money">
+        <h6>Save Money</h6>
+    </div>
+    <div class="f-box">
+        <img src="static/promotion.jpeg" alt="promotion">
+        <h6>Promotios</h6>
+    </div>
+    <div class="f-box">
+        <img src="static/happy_sell.jpg" alt="happy_sell">
+        <h6>Happy Sell</h6>
+    </div>
+    
+</section>
+
+<section id="product1" class="sect container">
+    
+    <h2>
+        Products
+    </h2>
+    <p>
+        Seasion Collections New Design
+    </p>
+    
+    <div class="prod_contain">
+        
+        {%for i in data%}
+        <div class="prod">
+        <a href="{{url_for('single_item', id=i.id)}}">
+            <img src="static/products/{{i.path}}">
+            <div class="info">
+                <span>
+                    Multifunctional Day-Date-Just
+                </span>
+                <h5>
+                    {{i.name}}
+                </h5>
+                <div class="rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                </div>
+                <h4>${{i.price}}</h4>
+                
+            </div>
+        </a>
+        <form action="/carts", method="POST">
+            <input type="hidden" name="main_id" value="{{i.id}}">
+            <input type="hidden" name="quantity" value="1"> 
+            <button type="submit"><i class="bi bi-cart cart"></i></button>
+        </form>
+        </div>
+        {%endfor%}
+    
+
+    </div>
+    
+</section>
+<section id="banner2" class="sect container">
+    
+    <div class="i-banner">
+
+        <h4>
+            Crazy deal
+        </h4>
+        <h2>
+            buy 1 get 1 free
+        </h2>
+        <h5>
+            The best classic is on sale at Bah Watch
+        </h5>
+        <button>
+            Learn More
+        </button>
+    </div>
+    <div class="i-banner2">
+        <h4>
+            Crazy deal
+        </h4>
+        <h2>
+            buy 1 get 1 free
+        </h2>
+        <h5>
+            The best classic is on sale at Bah Watch
+        </h5>
+        <button>
+            Learn More
+        </button>
+    </div>
+    <div class="i-banner3">
+        <h2>
+            buy 1 get 1 free
+        </h2>
+        <h5>
+            The best classic is on sale at Bah Watch
+        </h5>
+    </div>
+    <div class="i-banner4">
+        <h2>
+            buy 1 get 1 free
+        </h2>
+        <h5>
+            The best classic is on sale at Bah Watch
+        </h5>
+    </div>
+    <div class="i-banner5">
+        <h2>
+            buy 1 get 1 free
+        </h2>
+        <h5>
+            The best classic is on sale at Bah Watch
+        </h5>
+    </div>
+</section>
+
+
+
+{% endblock %}

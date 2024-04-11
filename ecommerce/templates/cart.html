@@ -1,0 +1,66 @@
+{%extends "layout.html"%}
+
+{% block title %}
+    Cart
+{% endblock %}
+
+{% block main %}
+
+<table class="table">
+    <h1>CARTS</h1>
+    <hr>
+    <thead>
+        <tr>
+            <th scope="col">Sr</th>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+            
+        <tr>
+    </thead>
+
+    <tbody>
+
+        {% for key,i in session["Carts"].items() %}
+        
+            <tr>
+                <form action="/update_cart", method="POST">
+                    
+                    <input type="hidden" name="id" value="{{key|int}}">
+                    <td>{{loop.index}}</td>
+                    <td><img src="{{url_for('static', filename='/products/'+i.path)}}" width="60px"></td>
+                    <td>{{i.name}}</td>
+                    {% set price = i.quantity|int * i.price|float %}
+                    <td><b>{{price}}</b></td>
+                    <td><b><input type="number" name="quantity" value="{{i.quantity}}" style="width:50px;text-align:center"></td>
+                    <td><button type="submit" class="btn btn-sm btn-info">Update</button></td>
+                    <td><a href="{{url_for('delete_cart',id=key)}}" class="btn-sm btn-danger">Delete</a></td>
+                </form>
+            </tr>
+            
+            
+            
+        {% endfor %}
+    </tbody>
+
+</table>
+<table class="table table-sm">
+    <tr>
+        <hr>
+            <td><a href="store.html">Continue Shoping</a></td>
+            <td width="40%"><a href="{{url_for('get_order')}}" class=" btn btn-success btn-sm">Order Now</a></td>
+            <td colspan="3"><h4>Total: ${{total}}</h4></td>
+            <td></td>
+            <td width="20%"></td>
+            <td><a href="{{url_for('clearcart')}}" class="btn btn-danger btn-sm float-right mr-4"> Clear Cart</a></td>
+            
+            
+    </tr>
+</table>
+    
+
+
+{% endblock %}

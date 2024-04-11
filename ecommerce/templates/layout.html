@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+            <meta name="viewport" content="initial-scale=1, width=device-width">
+            <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+            <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+            <title>
+                {%block title%}
+                
+                {%endblock%}
+            </title>
+           
+        </head>
+
+    <body>
+        <!--<ul class="hidden">
+            <li><a href="/">Home</a></li>
+            <li><a href="{{url_for(('store'))}}" >Store</a></li>
+            <li><a href="{{url_for(('blog'))}}" >Blog</a></li>
+            <li><a href="{{url_for('contact')}}" >Contact</a></li>
+            <li><a href="{{url_for('about')}}" >About</a></li>
+            <li><a href="{{url_for('get_cart')}}" ><i class="bi bi-bag">({{(session["Carts"])|length}})</i></a></li>
+        </ul>-->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(42, 159, 237);">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <a class="navbar-brand" href="#"><img src="{{url_for('static', filename='web_logo.png')}}" style="width:100px;height:300;" alt="logo"></a>
+                                
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
+                        <div class="col-1">
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+                                    <li class="nav-item"><a href="{{url_for(('store'))}}" class="nav-link">Store</a></li>
+                                    <li class="nav-item"><a href="{{url_for(('blog'))}}" class="nav-link">Blog</a></li>
+                                    <li class="nav-item"><a href="{{url_for('contact')}}" class="nav-link">Contact</a></li>
+                                    <li class="nav-item"><a href="{{url_for('about')}}" class="nav-link">About</a></li>
+                                    <li class="nav-item"><a href="{{url_for('get_cart')}}" class="nav-link" style="white-space:nowrap"><i class="bi bi-bag">({{(session["Carts"])|length}})</i></a></li>
+                                    {% if current_user.is_authenticated %}
+                                    <li class="nav-item"><a href="#" class="nav-link">{{current_user.name}}</a></li>
+                                    <li class="nav-item"><a href="{{url_for('log_out')}}" class="nav-link" style="white-space:nowrap"> Log Out</a></li>
+                                    {% else %}
+                                    <li class="nav-item"><a href="{{url_for('login')}}" class="nav-link" style="white-space:nowrap">Log in</a></li>
+                                    {%endif%}
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="col"> 
+                <div class="container mt-3" style="padding-bottom: 5px;">
+                    <form class="d-flex" action="/result" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" name="q" aria-label="Search">
+                        <button class="btn btn-primary my-2 my-sm-0"  type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </header>
+        
+        {% block main %}{%endblock%}
+
+        <footer>
+
+            <section id="newsletter" class="sect marginall">
+                <div class="newsletter1">
+                    <h4>
+                        Sign Up For Newsletters
+                    </h4>
+                    <p>
+                        Get E-mail updates about our lateast shop and <span>special odders.</span>
+                    </p>
+                </div>
+
+                <div class="newsletter2">
+                    <input type="text" placeholder="Your Email address">
+                    <button>Sign Up</button>
+                </div>
+            
+            </section>
+            <section   id="foot" class="sect">
+            <div class="col">
+                <img src="static/web_logo.png"  class="logo" style="width:100px;height:300;" alt="logo">
+                <h4><strong>Contact</strong></h4>
+                <p><strong>Address:</strong> Mechlin Street, Monrovia, Liberia</p>
+                <p><strong>Phone:</strong> +231 770071894 / +231 881389579</p>
+                <p><strong>Hours:</strong> 9:00 - 17:00, Mon - Sat</p>
+                <div class="media">
+                    <h4>Follow Us</h4>
+                    <div class="icon">
+                        <i class="bi bi-facebook"></i>
+                        <i class="bi bi-instagram"></i>
+                        <i class="bi bi-linkedin"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <h4><strong>About</strong></h4>
+                <a href="#">About us</a>
+                <a href="#">Delivery Information</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & conditions</a>
+                <a href="#">Contact Us</a>
+            </div>
+
+            <div class="col">
+                <h4><strong>My Account</strong></h4>
+                <a href="#">Sign In</a>
+                <a href="#">View Cart</a>
+                <a href="#">My wishlist</a>
+                <a href="#">Track My Order</a>
+                <a href="#">Help</a>
+            </div>
+            <div class="col install">
+                <h4><strong>Install App</strong></h4>
+                <p>From App Store on Google Play</p>
+                <div class="app">
+                    <img src="static/app_store.jpg" style="width:150px;">
+                    <img src="static/play_store.png" style="width:200px;">
+                </div>
+                <p>Secured Payment Gateways</p>
+                <img src="static/pay1.jpg">
+            </div>
+        </section>
+        </footer>
+
+        
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script>
+        
+
+        const pop = document.querySelector('#alert');
+        pop.addEventListener('click', function(){
+            alert('Account name: Isshaaq bah\nAccount Number: 0770071894')
+        })
+        
+
+        const change = document.getElementsByClassName('.hidden');
+        function OpenNav(){
+           change.style.width = "300px";
+           change.style.opacity = "1";
+        }
+
+        //menu.addEventListener('click', function(){
+          //  const change = document.querySelector('.hidden');
+           // alert('Account name: Isshaaq bah\nAccount Number: 0770071894')
+           // document.querySelector('.hidden').style.width = "300px";
+           // document.querySelector('.hidden').style.opacity = "1";
+
+        //})
+        
+        
+    </script>
+</html>
+</html>
