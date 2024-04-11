@@ -3,3 +3,9 @@ Flask
 Flask-Session
 requests
 SQL
+wtforms
+flask_wtf
+flask_sqlalchemy
+flask_msearch
+flask_restful
+flask_login
